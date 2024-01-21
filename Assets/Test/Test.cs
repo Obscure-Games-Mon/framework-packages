@@ -11,6 +11,10 @@ namespace TestNamespace
             float tmp = 0;
             tmp.MapValue(0, 0, 0, 0);
             this.Log(tmp.ToString("C"));
+            
+            gameObject.GetComponent<Collider>();
+            transform.GetCachedComponent<Collider>();
+            gameObject.GetCachedComponent<Collider>();
         }
     }
 }
