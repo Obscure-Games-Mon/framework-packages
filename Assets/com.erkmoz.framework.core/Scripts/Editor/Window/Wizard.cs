@@ -7,17 +7,6 @@ using UnityEngine.UIElements;
 
 public class Wizard : EditorWindow
 {
-    [Flags]
-    public enum Logging
-    {
-        None = 0,
-        Everything = ~0,
-        Utility = 1 << 1,
-        EditorUtility = 1 << 2,
-        UnityExtensions = 1 << 3,
-        Mathematics = 1 << 4
-    }
-
     [SerializeField]
     private VisualTreeAsset m_VisualTreeAsset = default;
 
@@ -44,7 +33,7 @@ public class Wizard : EditorWindow
         var root = rootVisualElement;
 
         int logFlagsVal = EditorPrefs.GetInt(Core.Prefs.Key.Logs, 0);
-        root.Q<EnumFlagsField>("LogFlags").SetValueWithoutNotify((Logging)logFlagsVal);
+        root.Q<EnumFlagsField>("LogFlags").SetValueWithoutNotify((Core.Prefs.Logging)logFlagsVal);
 
         root.Q<ColorField>("LogColor").SetValueWithoutNotify(Core.Prefs.GetColor(Core.Prefs.Key.LogColor));
         root.Q<ColorField>("ImportantLogColor").SetValueWithoutNotify(Core.Prefs.GetColor(Core.Prefs.Key.ImportantLogColor));

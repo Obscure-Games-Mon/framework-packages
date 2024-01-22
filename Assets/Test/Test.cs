@@ -6,15 +6,15 @@ namespace TestNamespace
 {
     public class Test : MonoBehaviour
     {
+        [ContextMenu("Test")]
         private void TestMethod()
         {
             float tmp = 0;
             tmp.MapValue(0, 0, 0, 0);
-            this.Log(tmp.ToString("C"));
             
-            gameObject.GetComponent<Collider>();
+            //gameObject.GetComponent<Collider>();
             transform.GetCachedComponent<Collider>();
-            gameObject.GetCachedComponent<Collider>();
+            //gameObject.GetCachedComponent<Collider>();
         }
     }
 }
