@@ -45,11 +45,30 @@ namespace Framework
                 return false;
             }
 
+            /// <summary>
+            /// Gets the path of a given class type
+            /// </summary>
+            /// <param name="classTypeOf">Use typeof() to grab class type.</param>
+            /// <param name="path"></param>
+            /// <returns></returns>
+            public static bool GetScriptPath(System.Type classTypeOf, out string path)
+            {
+                return DoGetScriptPath(classTypeOf, out path);
+            }
+
+            /// <summary>
+            /// Gets the path of a given class
+            /// </summary>
             public static bool GetScriptPath<T>(out string path)
             {
-                path = string.Empty;
+                return DoGetScriptPath(typeof(T), out path);
+            }
 
-                string scriptType = typeof(T).ToString();
+            private static bool DoGetScriptPath(System.Type scriptTypeOf, out string path)
+            {
+                string scriptType = scriptTypeOf.ToString();
+                path = string.Empty;
+                
                 int lastIndex = scriptType.LastIndexOf('.') + 1;
                 string scriptName = scriptType[lastIndex..];
                 
