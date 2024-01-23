@@ -31,6 +31,7 @@ namespace Framework
         private static void OnSceneLoaded(Scene arg0, LoadSceneMode arg1)
         {
             Debug.Log("Scene Loaded, flushing cache.");
+            FlushCache();
         }
 
         public static void FlushCache()

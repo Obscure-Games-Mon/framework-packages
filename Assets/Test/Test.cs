@@ -1,6 +1,7 @@
 using Framework;
 using Framework.Mathematics;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 namespace TestNamespace
 {
@@ -15,6 +16,12 @@ namespace TestNamespace
             //gameObject.GetComponent<Collider>();
             transform.GetCachedComponent<Collider>();
             //gameObject.GetCachedComponent<Collider>();
+        }
+        
+        [ContextMenu("Test 2")]
+        private void TestMethod2()
+        {
+            SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex);
         }
     }
 }
