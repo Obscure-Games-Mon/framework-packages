@@ -18,7 +18,7 @@ namespace Framework
         {
             #if UNITY_EDITOR
 
-            if (EditorPrefs.GetBool(Prefs.Key.FullTypePath))
+            if (EditorPrefs.GetBool(Prefs.Key.FullTypePath, false))
             {
                 return type.ToString();
             }
