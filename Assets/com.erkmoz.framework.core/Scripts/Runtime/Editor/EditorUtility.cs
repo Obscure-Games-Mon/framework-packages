@@ -2,7 +2,6 @@
 
 using System;
 using System.IO;
-using System.Linq;
 using System.Text.RegularExpressions;
 using UnityEditor;
 using UnityEditor.Compilation;
@@ -55,7 +54,6 @@ namespace Framework
             /// Gets the path of a given class type
             /// </summary>
             /// <param name="classTypeOf">Use typeof() to grab class type.</param>
-            /// <param name="path"></param>
             /// <returns></returns>
             public static bool GetScriptPath(System.Type classTypeOf, out string path)
             {
@@ -63,7 +61,7 @@ namespace Framework
             }
 
             /// <summary>
-            /// Gets the path of a given class
+            /// Gets the path of a given class. For static classes, use `GetScriptPath(System.Type, out string)`
             /// </summary>
             public static bool GetScriptPath<T>(out string path)
             {

@@ -7,16 +7,6 @@ namespace TestNamespace
 {
     public class Test : MonoBehaviour
     {
-        //public static class StaticClass
-        //{
-        //    
-        //}
-
-        public class NormalClass
-        {
-            
-        }
-        
         [ContextMenu("Test")]
         private void TestMethod()
         {
