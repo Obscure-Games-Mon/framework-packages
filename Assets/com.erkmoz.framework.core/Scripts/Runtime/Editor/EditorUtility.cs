@@ -1,7 +1,13 @@
 #if UNITY_EDITOR
 
+using System;
+using System.IO;
+using System.Linq;
+using System.Text.RegularExpressions;
 using UnityEditor;
+using UnityEditor.Compilation;
 using UnityEngine;
+using Assembly = System.Reflection.Assembly;
 
 namespace Framework
 {
@@ -66,29 +72,68 @@ namespace Framework
 
             private static bool DoGetScriptPath(System.Type scriptTypeOf, out string path)
             {
-                string scriptType = scriptTypeOf.ToString();
                 path = string.Empty;
-                
-                int lastIndex = scriptType.LastIndexOf('.') + 1;
-                string scriptName = scriptType[lastIndex..];
-                
-                string[] guids = AssetDatabase.FindAssets($"t:script {scriptName}");
 
+                string targetAssemblyName = string.Empty;
+
+                string[] guids = AssetDatabase.FindAssets($"t:script");
+                
+                Assembly[] assemblies = AppDomain.CurrentDomain.GetAssemblies();
+                
+                foreach (Assembly assembly in assemblies)
+                {
+                    Type[] types = assembly.GetTypes();
+
+                    foreach (Type type in types)
+                    {
+                        if (type == scriptTypeOf)
+                        {
+                            targetAssemblyName = type.Assembly.GetName().Name;
+                            break;
+                        }
+                    }
+                }
+                
                 foreach (var guid in guids)
                 {
                     string assetPath = AssetDatabase.GUIDToAssetPath(guid);
-                    int lastSlashIndex = assetPath.LastIndexOf('/');
+                    string txt = File.ReadAllText(assetPath);
                     
-                    var substring = assetPath[lastSlashIndex..];
-            
-                    if (substring == $"/{scriptName}.cs")
+                    var splits = scriptTypeOf.FullName.Split('+', '.');
+                    string tmp = string.Empty;
+                    int totalSuccess = splits.Length;
+                    int success = 0;
+                    
+                    foreach (var split in splits)
                     {
-                        path = assetPath;
-                        return true;
+                        string pattern = @"\b" + split + @"\b";
+
+                        if (MatchPattern(txt, pattern))
+                        {
+                            success++;
+                        }
+                    }
+                    
+                    if (success == totalSuccess)
+                    {
+                        string assemblyName = Path.GetFileName(CompilationPipeline.GetAssemblyNameFromScriptPath(assetPath));
+                        assemblyName = assemblyName.Replace(".dll", string.Empty);
+
+                        if (targetAssemblyName == assemblyName)
+                        {
+                            path = assetPath;
+                            return true;
+                        }
                     }
                 }
-
+                
                 return false;
+
+                bool MatchPattern(string input, string pattern)
+                {
+                    Match matchNamespace = Regex.Match(input, pattern);
+                    return matchNamespace.Success;
+                }
             }
 
             public static UnityEditor.Build.NamedBuildTarget GetCurrentNamedBuildTarget()
