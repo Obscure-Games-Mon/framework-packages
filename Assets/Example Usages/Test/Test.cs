@@ -16,11 +16,15 @@ namespace TestNamespace
             //gameObject.GetComponent<Collider>();
             //transform.GetCachedComponent<Collider>();
             //gameObject.GetCachedComponent<Collider>();
+            
+            #if UNITY_EDITOR
 
             Core.EditorUtility.GetScriptPath(typeof(StaticClass), out var path);
             Core.EditorUtility.GetScriptPath<Test>(out var path2);
             
             this.Log($"Path: {path}, path2: {path2}");
+            
+            #endif
         }
         
         [ContextMenu("Test 2")]

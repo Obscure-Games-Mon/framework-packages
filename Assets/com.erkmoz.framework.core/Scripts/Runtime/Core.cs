@@ -10,6 +10,21 @@ namespace Framework
 {
     public static partial class Core
     {
+        public static PrefabRegistry m_PrefabRegistry
+        {
+            get
+            {
+                if (!_prefabRegistry)
+                {
+                    _prefabRegistry = Resources.Load<PrefabRegistry>("Prefab Registry");
+                }
+                
+                return _prefabRegistry;
+            }
+        }
+
+        private static PrefabRegistry _prefabRegistry;
+        
         #region Extensions
 
         #region Logs

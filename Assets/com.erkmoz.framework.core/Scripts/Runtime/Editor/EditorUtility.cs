@@ -7,6 +7,7 @@ using UnityEditor;
 using UnityEditor.Compilation;
 using UnityEngine;
 using Assembly = System.Reflection.Assembly;
+using Object = UnityEngine.Object;
 
 namespace Framework
 {
@@ -14,7 +15,7 @@ namespace Framework
     {
         public static partial class EditorUtility
         {
-            public static bool LoadUniquePrefab<T>(out T loadedObject) where T : UnityEngine.Object
+            public static bool LoadUniquePrefab<T>(out T loadedObject) where T : MonoBehaviour
             {
                 loadedObject = null;
                 string storedPath = EditorPrefs.GetString($"Framework-Path-{typeof(T)}");
@@ -27,7 +28,8 @@ namespace Framework
                     {
                         prefab.Log("Found prefab with pre-stored path.");
                         loadedObject = prefab;
-                        return true;
+                        m_PrefabRegistry.Register(typeof(T), prefab);
+                        return loadedObject;
                     }
                 }
             
@@ -43,7 +45,8 @@ namespace Framework
                         loadedObject = prefab;
                         EditorPrefs.SetString($"Framework-Path-{typeof(T)}", path);
                         prefab.Log("Searched and found prefab.");
-                        return true;
+                        m_PrefabRegistry.Register(typeof(T), prefab);
+                        return loadedObject;
                     }   
                 }
 
