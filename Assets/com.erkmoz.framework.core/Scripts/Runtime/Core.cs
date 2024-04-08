@@ -81,7 +81,7 @@ namespace Framework
         /// Returns a default (which can be null for reference types, or the default for value types)
         /// if the object could not be casted or the index is out of bounds.
         /// </returns>
-        public static T SafeGetAt<T>(this object[] objs, int index)
+        public static T SafeGetAt<T>(this object[] objs, int index, T defaultValue = default)
         {
             if (objs != null && objs.Length > index && index >= 0)
             {
@@ -93,7 +93,7 @@ namespace Framework
                 }
             }
             
-            return default;
+            return defaultValue;
         }
         
         #endregion
