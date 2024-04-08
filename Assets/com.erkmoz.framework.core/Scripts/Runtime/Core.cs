@@ -46,7 +46,7 @@ namespace Framework
         #if UNITY_2022_3_OR_NEWER
         [HideInCallstack]
         #endif
-        public static void Log<T>(this T contextObject, string message)
+        public static void Log<T>(this T contextObject, object message)
         {
             Debug.Log($"<color=#{Prefs.GetColorString(Prefs.Key.LogColor)}>[{contextObject.GetType().GetNameOrFullName()}] </color>{message}");
         }
@@ -54,7 +54,7 @@ namespace Framework
         #if UNITY_2022_3_OR_NEWER
         [HideInCallstack]
         #endif
-        public static void LogWarning<T>(this T contextObject, string message)
+        public static void LogWarning<T>(this T contextObject, object message)
         {
             Debug.Log($"<color=#{Prefs.GetColorString(Prefs.Key.WarningLogColor)}>[{contextObject.GetType().GetNameOrFullName()}] </color>{message}");
         }
@@ -62,7 +62,7 @@ namespace Framework
         #if UNITY_2022_3_OR_NEWER
         [HideInCallstack]
         #endif
-        public static void LogImportant<T>(this T contextObject, string message)
+        public static void LogImportant<T>(this T contextObject, object message)
         {
             Debug.Log($"<color=#{Prefs.GetColorString(Prefs.Key.ImportantLogColor)}>[{contextObject.GetType().GetNameOrFullName()}] </color>{message}");
         }
@@ -70,7 +70,7 @@ namespace Framework
         #if UNITY_2022_3_OR_NEWER
         [HideInCallstack]
         #endif
-        public static void LogError<T>(this T contextObject, string message)
+        public static void LogError<T>(this T contextObject, object message)
         {
             Debug.LogError($"<color=#{Prefs.GetColorString(Prefs.Key.ErrorLogColor)}>[{contextObject.GetType().GetNameOrFullName()}] </color>{message}");
         }
