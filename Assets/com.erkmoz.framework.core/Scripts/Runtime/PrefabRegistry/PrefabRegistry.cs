@@ -1,7 +1,13 @@
 using System.Collections.Generic;
+
+#if UNITY_EDITOR
+
 using UnityEditor;
 using UnityEditor.Build;
 using UnityEditor.Build.Reporting;
+
+#endif
+
 using UnityEngine;
 
 namespace Framework
