@@ -10,8 +10,6 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 39a3b8fac27193e46adddca7a86c8e9b, type: 3}
-  m_Name: Prefab Registry
+  m_Name: (Prefab Registry) Prefab Registry
   m_EditorClassIdentifier: 
-  m_Prefabs:
-  - m_Type: Framework.GameManager
-    m_Prefab: {fileID: 2481276188321550955, guid: 0c6cb4254757a0d4d90732ae67112a61, type: 3}
+  m_Prefabs: []
