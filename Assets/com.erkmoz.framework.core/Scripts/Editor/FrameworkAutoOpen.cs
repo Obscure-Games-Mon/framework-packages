@@ -1,21 +1,24 @@
 using UnityEditor;
 
-[InitializeOnLoad]
-public class FrameworkAutoOpen 
+namespace Framework.Editor
 {
-    static FrameworkAutoOpen()
+    [InitializeOnLoad]
+    public class FrameworkAutoOpen 
     {
-        bool hasSetup = EditorPrefs.GetBool("FrameworkSetup", false);
-
-        if (!hasSetup)
+        static FrameworkAutoOpen()
         {
-            EditorApplication.delayCall += OpenWindow;
+            bool hasSetup = EditorPrefs.GetBool("FrameworkSetup", false);
+
+            if (!hasSetup)
+            {
+                EditorApplication.delayCall += OpenWindow;
+            }
         }
-    }
     
-    private static void OpenWindow()
-    {
-        EditorApplication.ExecuteMenuItem("Tools/Framework/Setup");
-        EditorPrefs.SetBool("FrameworkSetup", true);
+        private static void OpenWindow()
+        {
+            EditorApplication.ExecuteMenuItem("Tools/Framework/Setup");
+            EditorPrefs.SetBool("FrameworkSetup", true);
+        }
     }
 }

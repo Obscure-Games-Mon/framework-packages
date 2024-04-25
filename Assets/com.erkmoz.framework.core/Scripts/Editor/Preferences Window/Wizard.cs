@@ -1,73 +1,75 @@
 using System;
-using Framework;
 using UnityEditor;
 using UnityEditor.UIElements;
 using UnityEngine;
 using UnityEngine.UIElements;
 
-public class Wizard : EditorWindow
+namespace Framework.Editor
 {
-    [SerializeField]
-    private VisualTreeAsset m_VisualTreeAsset = default;
-
-    [MenuItem("Tools/Framework/Preferences")]
-    public static void ShowExample()
+    public class Wizard : EditorWindow
     {
-        Wizard wnd = GetWindow<Wizard>();
-        wnd.titleContent = new GUIContent("Framework Preferences");
-    }
+        [SerializeField]
+        private VisualTreeAsset m_VisualTreeAsset = default;
 
-    public void CreateGUI()
-    {
-        VisualElement root = rootVisualElement;
+        [MenuItem("Tools/Framework/Preferences")]
+        public static void ShowExample()
+        {
+            Wizard wnd = GetWindow<Wizard>();
+            wnd.titleContent = new GUIContent("Framework Preferences");
+        }
 
-        VisualElement labelFromUXML = m_VisualTreeAsset.Instantiate();
-        root.Add(labelFromUXML);
+        public void CreateGUI()
+        {
+            VisualElement root = rootVisualElement;
 
-        DrawDefaultValues();
-        Subscribe();
-    }
+            VisualElement labelFromUXML = m_VisualTreeAsset.Instantiate();
+            root.Add(labelFromUXML);
 
-    private void DrawDefaultValues()
-    {
-        var root = rootVisualElement;
+            DrawDefaultValues();
+            Subscribe();
+        }
 
-        int logFlagsVal = EditorPrefs.GetInt(Core.Prefs.Key.Logs, 0);
-        root.Q<EnumFlagsField>("LogFlags").SetValueWithoutNotify((Core.Prefs.Logging)logFlagsVal);
+        private void DrawDefaultValues()
+        {
+            var root = rootVisualElement;
 
-        root.Q<ColorField>("LogColor").SetValueWithoutNotify(Core.Prefs.GetColor(Core.Prefs.Key.LogColor));
-        root.Q<ColorField>("ImportantLogColor").SetValueWithoutNotify(Core.Prefs.GetColor(Core.Prefs.Key.ImportantLogColor));
-        root.Q<ColorField>("WarningLogColor").SetValueWithoutNotify(Core.Prefs.GetColor(Core.Prefs.Key.WarningLogColor));
-        root.Q<ColorField>("ErrorLogColor").SetValueWithoutNotify(Core.Prefs.GetColor(Core.Prefs.Key.ErrorLogColor));
-    }
-    
-    private void Subscribe()
-    {
-        VisualElement root = rootVisualElement;
+            int logFlagsVal = EditorPrefs.GetInt(Core.Prefs.Key.Logs, 0);
+            root.Q<EnumFlagsField>("LogFlags").SetValueWithoutNotify((Core.Prefs.Logging)logFlagsVal);
+
+            root.Q<ColorField>("LogColor").SetValueWithoutNotify(Core.Prefs.GetColor(Core.Prefs.Key.LogColor));
+            root.Q<ColorField>("ImportantLogColor").SetValueWithoutNotify(Core.Prefs.GetColor(Core.Prefs.Key.ImportantLogColor));
+            root.Q<ColorField>("WarningLogColor").SetValueWithoutNotify(Core.Prefs.GetColor(Core.Prefs.Key.WarningLogColor));
+            root.Q<ColorField>("ErrorLogColor").SetValueWithoutNotify(Core.Prefs.GetColor(Core.Prefs.Key.ErrorLogColor));
+        }
         
-        root.Q<ColorField>("LogColor").RegisterValueChangedCallback(changeEvent => { OnColorValueChanged(changeEvent, Core.Prefs.Key.LogColor); });
-        root.Q<ColorField>("ImportantLogColor").RegisterValueChangedCallback(changeEvent => { OnColorValueChanged(changeEvent, Core.Prefs.Key.ImportantLogColor); });
-        root.Q<ColorField>("WarningLogColor").RegisterValueChangedCallback(changeEvent => { OnColorValueChanged(changeEvent, Core.Prefs.Key.WarningLogColor); });
-        root.Q<ColorField>("ErrorLogColor").RegisterValueChangedCallback(changeEvent => { OnColorValueChanged(changeEvent, Core.Prefs.Key.ErrorLogColor); });
+        private void Subscribe()
+        {
+            VisualElement root = rootVisualElement;
+            
+            root.Q<ColorField>("LogColor").RegisterValueChangedCallback(changeEvent => { OnColorValueChanged(changeEvent, Core.Prefs.Key.LogColor); });
+            root.Q<ColorField>("ImportantLogColor").RegisterValueChangedCallback(changeEvent => { OnColorValueChanged(changeEvent, Core.Prefs.Key.ImportantLogColor); });
+            root.Q<ColorField>("WarningLogColor").RegisterValueChangedCallback(changeEvent => { OnColorValueChanged(changeEvent, Core.Prefs.Key.WarningLogColor); });
+            root.Q<ColorField>("ErrorLogColor").RegisterValueChangedCallback(changeEvent => { OnColorValueChanged(changeEvent, Core.Prefs.Key.ErrorLogColor); });
 
-        root.Q<Toggle>("FullTypePath").RegisterValueChangedCallback(changeEvent => { OnToggleValueChanged(changeEvent, Core.Prefs.Key.FullTypePath); });
+            root.Q<Toggle>("FullTypePath").RegisterValueChangedCallback(changeEvent => { OnToggleValueChanged(changeEvent, Core.Prefs.Key.FullTypePath); });
 
-        root.Q<EnumFlagsField>("LogFlags").RegisterValueChangedCallback(changeEvent => { OnEnumFlagsValueChanged(changeEvent, Core.Prefs.Key.Logs); });
-    }
+            root.Q<EnumFlagsField>("LogFlags").RegisterValueChangedCallback(changeEvent => { OnEnumFlagsValueChanged(changeEvent, Core.Prefs.Key.Logs); });
+        }
 
-    private void OnToggleValueChanged(ChangeEvent<bool> evt, string key)
-    {
-        EditorPrefs.SetBool(key, evt.newValue);
-    }
-    
-    private void OnEnumFlagsValueChanged(ChangeEvent<Enum> evt, string key)
-    {
-        EditorPrefs.SetInt(key, Convert.ToInt32(evt.newValue));
-    }
+        private void OnToggleValueChanged(ChangeEvent<bool> evt, string key)
+        {
+            EditorPrefs.SetBool(key, evt.newValue);
+        }
+        
+        private void OnEnumFlagsValueChanged(ChangeEvent<Enum> evt, string key)
+        {
+            EditorPrefs.SetInt(key, Convert.ToInt32(evt.newValue));
+        }
 
-    private void OnColorValueChanged(ChangeEvent<Color> evt, string key)
-    {
-        var htmlStringRgba = ColorUtility.ToHtmlStringRGB(evt.newValue);
-        EditorPrefs.SetString(key, htmlStringRgba);
+        private void OnColorValueChanged(ChangeEvent<Color> evt, string key)
+        {
+            var htmlStringRgba = ColorUtility.ToHtmlStringRGB(evt.newValue);
+            EditorPrefs.SetString(key, htmlStringRgba);
+        }
     }
 }
