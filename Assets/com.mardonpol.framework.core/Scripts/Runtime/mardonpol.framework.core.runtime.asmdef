@@ -1,12 +1,8 @@
 {
-    "name": "erkmoz.frameworkcore.editor",
+    "name": "mardonpol.frameworkcore.runtime",
     "rootNamespace": "",
-    "references": [
-        "GUID:1827483a8a6786940b4ad040be88f273"
-    ],
-    "includePlatforms": [
-        "Editor"
-    ],
+    "references": [],
+    "includePlatforms": [],
     "excludePlatforms": [],
     "allowUnsafeCode": false,
     "overrideReferences": false,
