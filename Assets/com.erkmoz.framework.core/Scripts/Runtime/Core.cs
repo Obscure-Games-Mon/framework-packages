@@ -147,6 +147,7 @@ namespace Framework
                 EditorPrefs.DeleteKey(Key.WarningLogColor);
                 EditorPrefs.DeleteKey(Key.ErrorLogColor);
                 EditorPrefs.DeleteKey(Key.Logs);
+                EditorPrefs.DeleteKey("FrameworkSetup");
             }
             
             public static bool LogsEnabled(Logging logType)
