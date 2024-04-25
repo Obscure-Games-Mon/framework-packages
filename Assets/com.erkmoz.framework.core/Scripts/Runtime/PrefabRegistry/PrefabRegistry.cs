@@ -55,7 +55,7 @@ namespace Framework
             
             #if UNITY_EDITOR
             
-            EditorUtility.SetDirty(Core.m_PrefabRegistry);
+            EditorUtility.SetDirty(Core.PrefabRegistryInstance);
             AssetDatabase.SaveAssets();
             AssetDatabase.Refresh();
             
@@ -64,9 +64,9 @@ namespace Framework
 
         public static bool LoadUniquePrefab<T>(out T loadedObject) where T : MonoBehaviour
         {
-            Debug.LogError($"Searching in prefabs: {Core.m_PrefabRegistry.m_Prefabs.Count}");
+            Debug.LogError($"Searching in prefabs: {Core.PrefabRegistryInstance.m_Prefabs.Count}");
 
-            foreach (var prefabItem in Core.m_PrefabRegistry.m_Prefabs)
+            foreach (var prefabItem in Core.PrefabRegistryInstance.m_Prefabs)
             {
                 Debug.LogError($"Searching for {typeof(T).ToString()} in {prefabItem.m_Type}");
                 if (prefabItem.m_Type == typeof(T).ToString())

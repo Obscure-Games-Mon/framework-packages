@@ -11,13 +11,14 @@ namespace Framework
 {
     public static partial class Core
     {
-        public static PrefabRegistry m_PrefabRegistry
+        public static PrefabRegistry PrefabRegistryInstance
         {
             get
             {
                 if (!_prefabRegistry)
                 {
-                    _prefabRegistry = Resources.Load<PrefabRegistry>("Prefab Registry");
+                    var prefabRegistries = Resources.LoadAll<PrefabRegistry>(string.Empty);
+                    _prefabRegistry = prefabRegistries[0];
                 }
                 
                 return _prefabRegistry;

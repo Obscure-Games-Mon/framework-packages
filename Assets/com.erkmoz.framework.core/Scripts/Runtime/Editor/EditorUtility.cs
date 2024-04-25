@@ -26,9 +26,9 @@ namespace Framework
 
                     if (prefab)
                     {
-                        prefab.Log("Found prefab with pre-stored path.");
+                        prefab.Log($"Found prefab with pre-stored path: {prefab.name} at {storedPath}");
                         loadedObject = prefab;
-                        m_PrefabRegistry.Register(typeof(T), prefab);
+                        PrefabRegistryInstance.Register(typeof(T), prefab);
                         return loadedObject;
                     }
                 }
@@ -45,7 +45,7 @@ namespace Framework
                         loadedObject = prefab;
                         EditorPrefs.SetString($"Framework-Path-{typeof(T)}", path);
                         prefab.Log("Searched and found prefab.");
-                        m_PrefabRegistry.Register(typeof(T), prefab);
+                        PrefabRegistryInstance.Register(typeof(T), prefab);
                         return loadedObject;
                     }   
                 }
