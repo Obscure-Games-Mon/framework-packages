@@ -50,6 +50,7 @@ namespace Framework
                     }   
                 }
 
+                Debug.LogError($"Returning null <b>{typeof(T)}</b> prefab.");
                 return false;
             }
 

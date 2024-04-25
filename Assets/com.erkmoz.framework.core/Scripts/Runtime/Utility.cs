@@ -20,7 +20,6 @@ namespace Framework
 
                 #else
                 
-                Debug.LogError("Using the registry to search for prefab");
                 return PrefabRegistry.LoadUniquePrefab(out prefab);
 
                 #endif

@@ -64,20 +64,17 @@ namespace Framework
 
         public static bool LoadUniquePrefab<T>(out T loadedObject) where T : MonoBehaviour
         {
-            Debug.LogError($"Searching in prefabs: {Core.PrefabRegistryInstance.m_Prefabs.Count}");
-
             foreach (var prefabItem in Core.PrefabRegistryInstance.m_Prefabs)
             {
-                Debug.LogError($"Searching for {typeof(T).ToString()} in {prefabItem.m_Type}");
                 if (prefabItem.m_Type == typeof(T).ToString())
                 {
                     loadedObject = prefabItem.m_Prefab.GetComponent<T>();
-                    Debug.LogError("Returning loaded object");
+                    Debug.Log("Returning loaded object");
                     return loadedObject;
                 }
             }
 
-            Debug.LogError("Returning null prefab");
+            Debug.LogError($"Returning null <b>{typeof(T)}</b> prefab.");
 
             loadedObject = null;
             return false;
