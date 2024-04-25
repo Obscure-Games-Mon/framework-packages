@@ -14,7 +14,6 @@ namespace Framework
 
             public static bool LoadUniquePrefab<T>(out T prefab) where T : MonoBehaviour
             {
-                
                 #if UNITY_EDITOR
 
                 return EditorUtility.LoadUniquePrefab(out prefab);

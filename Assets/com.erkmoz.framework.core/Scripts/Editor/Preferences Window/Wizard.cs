@@ -10,11 +10,11 @@ public class Wizard : EditorWindow
     [SerializeField]
     private VisualTreeAsset m_VisualTreeAsset = default;
 
-    [MenuItem("Tools/Framework/Wizard")]
+    [MenuItem("Tools/Framework/Preferences")]
     public static void ShowExample()
     {
         Wizard wnd = GetWindow<Wizard>();
-        wnd.titleContent = new GUIContent("Framework Wizard");
+        wnd.titleContent = new GUIContent("Framework Preferences");
     }
 
     public void CreateGUI()

@@ -1,5 +1,6 @@
 using System;
 using System.Collections.Generic;
+using JetBrains.Annotations;
 using UnityEngine;
 
 #if UNITY_EDITOR
@@ -77,17 +78,21 @@ namespace Framework
         
         #endregion
         
-        /// <returns>
-        /// Returns a default (which can be null for reference types, or the default for value types)
-        /// if the object could not be casted or the index is out of bounds.
-        /// </returns>
-        public static T SafeGetAt<T>(this object[] objs, int index, T defaultValue = default)
+        /// <summary>
+        /// Safely retrieves an element from an array of objects.
+        /// </summary>
+        /// <typeparam name="T">The type of the desired element.</typeparam>
+        /// <param name="objectArray">The array of objects.</param>
+        /// <param name="index">The index of the desired element.</param>
+        /// <param name="defaultValue">The default value to return if the element is not found.</param>
+        /// <returns>The element at the specified index or the default value.</returns>
+        public static T SafeGetAt<T>([CanBeNull] this object[] objectArray, int index, T defaultValue = default)
         {
-            if (objs != null && objs.Length > index && index >= 0)
+            if (objectArray != null && objectArray.Length > index && index >= 0)
             {
-                object obj = objs[index];
-                
-                if(obj is T obj1)
+                object obj = objectArray[index];
+
+                if (obj is T obj1)
                 {
                     return obj1;
                 }
