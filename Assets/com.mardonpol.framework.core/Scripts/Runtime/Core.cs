@@ -106,17 +106,6 @@ namespace Framework
 
         public static class Prefs
         {
-            [Flags]
-            public enum Logging
-            {
-                None = 0,
-                Everything = ~0,
-                Utility = 1 << 1,
-                EditorUtility = 1 << 2,
-                UnityExtensions = 1 << 3,
-                Mathematics = 1 << 4
-            }
-            
             private static readonly Dictionary<string, string> Keys = new Dictionary<string, string>()
             {
                 {Key.LogColor, "627bc4"},
@@ -133,8 +122,6 @@ namespace Framework
                 public const string ErrorLogColor = "ErrorLogColor";
                 
                 public const string FullTypePath = "FullTypeName";
-                
-                public const string Logs = "Logs";
             }
 
             #if UNITY_EDITOR
@@ -146,15 +133,7 @@ namespace Framework
                 EditorPrefs.DeleteKey(Key.ImportantLogColor);
                 EditorPrefs.DeleteKey(Key.WarningLogColor);
                 EditorPrefs.DeleteKey(Key.ErrorLogColor);
-                EditorPrefs.DeleteKey(Key.Logs);
                 EditorPrefs.DeleteKey("FrameworkSetup");
-            }
-            
-            public static bool LogsEnabled(Logging logType)
-            {
-                var flags = EditorPrefs.GetInt(Prefs.Key.Logs, 0);
-                var logging = (Logging)flags;
-                return logging.HasFlag(logType);
             }
             
             #endif

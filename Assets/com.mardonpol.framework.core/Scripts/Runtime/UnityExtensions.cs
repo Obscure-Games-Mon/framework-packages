@@ -55,15 +55,6 @@ namespace Framework
                 
                     if (cachedObj.m_Object != null)
                     {
-                        #if UNITY_EDITOR
-
-                        if (Prefs.LogsEnabled(Prefs.Logging.UnityExtensions))
-                        {
-                            keyObject.Log("Used cached object.");
-                        }
-                        
-                        #endif
-                        
                         return cachedObj.m_Object as T;
                     }
                     else
@@ -80,15 +71,6 @@ namespace Framework
                     }
                 }
                 
-                #if UNITY_EDITOR
-                
-                if (Prefs.LogsEnabled(Prefs.Logging.UnityExtensions))
-                {
-                    keyObject.LogImportant("Used Unity's `GetComponent`.");
-                }
-                
-                #endif
-            
                 var newObj = keyObject.GetComponent<T>();
                 GetComponentCache.Add((keyObject, typeof(T)), new CachedObject(newObj, newObj != null));
                     

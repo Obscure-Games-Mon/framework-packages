@@ -33,9 +33,6 @@ namespace Framework.Editor
         {
             var root = rootVisualElement;
 
-            int logFlagsVal = EditorPrefs.GetInt(Core.Prefs.Key.Logs, 0);
-            root.Q<EnumFlagsField>("LogFlags").SetValueWithoutNotify((Core.Prefs.Logging)logFlagsVal);
-
             root.Q<ColorField>("LogColor").SetValueWithoutNotify(Core.Prefs.GetColor(Core.Prefs.Key.LogColor));
             root.Q<ColorField>("ImportantLogColor").SetValueWithoutNotify(Core.Prefs.GetColor(Core.Prefs.Key.ImportantLogColor));
             root.Q<ColorField>("WarningLogColor").SetValueWithoutNotify(Core.Prefs.GetColor(Core.Prefs.Key.WarningLogColor));
@@ -52,8 +49,6 @@ namespace Framework.Editor
             root.Q<ColorField>("ErrorLogColor").RegisterValueChangedCallback(changeEvent => { OnColorValueChanged(changeEvent, Core.Prefs.Key.ErrorLogColor); });
 
             root.Q<Toggle>("FullTypePath").RegisterValueChangedCallback(changeEvent => { OnToggleValueChanged(changeEvent, Core.Prefs.Key.FullTypePath); });
-
-            root.Q<EnumFlagsField>("LogFlags").RegisterValueChangedCallback(changeEvent => { OnEnumFlagsValueChanged(changeEvent, Core.Prefs.Key.Logs); });
         }
 
         private void OnToggleValueChanged(ChangeEvent<bool> evt, string key)
