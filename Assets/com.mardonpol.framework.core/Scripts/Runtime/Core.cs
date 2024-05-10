@@ -52,9 +52,25 @@ namespace Framework
         #if UNITY_2022_3_OR_NEWER
         [HideInCallstack]
         #endif
+        public static void Log(object message)
+        {
+            Debug.Log($"<color=#{Prefs.GetColorString(Prefs.Key.LogColor)}>[No Context] </color>{message}");
+        }
+        
+        #if UNITY_2022_3_OR_NEWER
+        [HideInCallstack]
+        #endif
         public static void LogWarning<T>(this T contextObject, object message)
         {
             Debug.Log($"<color=#{Prefs.GetColorString(Prefs.Key.WarningLogColor)}>[{contextObject.GetType().GetNameOrFullName()}] </color>{message}");
+        }
+        
+        #if UNITY_2022_3_OR_NEWER
+        [HideInCallstack]
+        #endif
+        public static void LogWarning(object message)
+        {
+            Debug.Log($"<color=#{Prefs.GetColorString(Prefs.Key.WarningLogColor)}>[No Context] </color>{message}");
         }
         
         #if UNITY_2022_3_OR_NEWER
@@ -68,9 +84,25 @@ namespace Framework
         #if UNITY_2022_3_OR_NEWER
         [HideInCallstack]
         #endif
+        public static void LogImportant(object message)
+        {
+            Debug.Log($"<color=#{Prefs.GetColorString(Prefs.Key.ImportantLogColor)}>[No Context] </color>{message}");
+        }
+        
+        #if UNITY_2022_3_OR_NEWER
+        [HideInCallstack]
+        #endif
         public static void LogError<T>(this T contextObject, object message)
         {
             Debug.LogError($"<color=#{Prefs.GetColorString(Prefs.Key.ErrorLogColor)}>[{contextObject.GetType().GetNameOrFullName()}] </color>{message}");
+        }
+        
+        #if UNITY_2022_3_OR_NEWER
+        [HideInCallstack]
+        #endif
+        public static void LogError(object message)
+        {
+            Debug.LogError($"<color=#{Prefs.GetColorString(Prefs.Key.ErrorLogColor)}>[No Context] </color>{message}");
         }
         
         #endregion
