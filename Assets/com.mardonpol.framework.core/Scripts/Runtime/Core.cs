@@ -87,7 +87,7 @@ namespace Framework
         /// <param name="index">The index of the desired element.</param>
         /// <param name="defaultValue">The default value to return if the element is not found.</param>
         /// <returns>The element at the specified index or the default value.</returns>
-        public static T SafeGetAt<T>([CanBeNull] this object[] objectArray, int index, T defaultValue = default)
+        public static T SafeGetAt<T>(this object[] objectArray, int index, T defaultValue = default)
         {
             if (objectArray != null && objectArray.Length > index && index >= 0)
             {
