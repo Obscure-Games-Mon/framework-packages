@@ -1,19 +1,25 @@
 {
-  "name": "com.mardonpol.framework.core",
-  "version": "0.0.18",
-  "displayName": "Framework Core",
-  "description": "Core containing extensions and code utility.",
+  "name": "com.mardonpol.framework.audio",
+  "version": "0.0.1",
+  "displayName": "Framework Audio",
+  "description": "Audio utility.",
   "unity": "2019.1",
   "unityRelease": "0b5",
   "documentationUrl": "https://example.com/",
   "changelogUrl": "https://example.com/changelog.html",
   "licensesUrl": "https://example.com/licensing.html",
-  "keywords": [
+  "keywords": 
+  [
     "keyword1",
     "keyword2",
     "keyword3"
   ],
-  "author": {
+  "dependencies": 
+  {
+    "com.framework.core": "https://github.com/darketomaly/framework-packages.git?path=Assets/com.mardonpol.framework.core "
+  },
+  "author": 
+  {
     "name": "Darketomaly",
     "email": "create@darketomaly.hk",
     "url": "https://darketomaly.hk"
