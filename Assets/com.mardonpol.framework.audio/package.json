@@ -2,7 +2,7 @@
   "name": "com.mardonpol.framework.audio",
   "version": "0.0.1",
   "displayName": "Framework Audio",
-  "description": "Audio utility.",
+  "description": "Audio utility. Needs the framework core installed.",
   "unity": "2019.1",
   "unityRelease": "0b5",
   "documentationUrl": "https://example.com/",
@@ -14,10 +14,6 @@
     "keyword2",
     "keyword3"
   ],
-  "dependencies": 
-  {
-    "com.framework.core": "https://github.com/darketomaly/framework-packages.git?path=Assets/com.mardonpol.framework.core "
-  },
   "author": 
   {
     "name": "Darketomaly",
