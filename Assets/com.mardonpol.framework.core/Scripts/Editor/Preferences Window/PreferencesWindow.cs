@@ -6,7 +6,7 @@ using UnityEngine.UIElements;
 
 namespace Framework.Editor
 {
-    public class Wizard : EditorWindow
+    public class PreferencesWindow : EditorWindow
     {
         [SerializeField]
         private VisualTreeAsset m_VisualTreeAsset = default;
@@ -14,7 +14,7 @@ namespace Framework.Editor
         [MenuItem("Tools/Framework/Preferences")]
         public static void ShowExample()
         {
-            Wizard wnd = GetWindow<Wizard>();
+            PreferencesWindow wnd = GetWindow<PreferencesWindow>();
             wnd.titleContent = new GUIContent("Framework Preferences");
         }
 
