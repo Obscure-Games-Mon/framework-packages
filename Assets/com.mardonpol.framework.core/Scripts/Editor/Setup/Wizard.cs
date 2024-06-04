@@ -6,16 +6,16 @@ using UnityEngine.UIElements;
 
 namespace Framework.Editor
 {
-    public class FrameworkSetup : EditorWindow
+    public class Wizard : EditorWindow
     {
         [SerializeField]
         private VisualTreeAsset m_VisualTreeAsset = default;
 
-        [MenuItem("Tools/Framework/Setup")]
+        [MenuItem("Tools/Framework/Wizard")]
         public static void ShowExample()
         {
-            FrameworkSetup wnd = GetWindow<FrameworkSetup>();
-            wnd.titleContent = new GUIContent("Framework Setup");
+            Wizard wnd = GetWindow<Wizard>();
+            wnd.titleContent = new GUIContent("Framework Wizard");
         }
 
         public void CreateGUI()
