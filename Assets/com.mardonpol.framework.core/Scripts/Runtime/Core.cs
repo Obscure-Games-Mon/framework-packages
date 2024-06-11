@@ -46,7 +46,9 @@ namespace Framework
         #endif
         public static void Log<T>(this T contextObject, object message)
         {
+            #if UNITY_EDITOR
             Debug.Log($"<color=#{Prefs.GetColorString(Prefs.Key.LogColor)}>[{contextObject.GetType().GetNameOrFullName()}] </color>{message}");
+            #endif
         }
         
         #if UNITY_2022_3_OR_NEWER
@@ -54,7 +56,9 @@ namespace Framework
         #endif
         public static void Log(object message)
         {
+            #if UNITY_EDITOR
             Debug.Log($"<color=#{Prefs.GetColorString(Prefs.Key.LogColor)}>[No Context] </color>{message}");
+            #endif
         }
         
         #if UNITY_2022_3_OR_NEWER
@@ -62,7 +66,9 @@ namespace Framework
         #endif
         public static void LogWarning<T>(this T contextObject, object message)
         {
+            #if UNITY_EDITOR
             Debug.Log($"<color=#{Prefs.GetColorString(Prefs.Key.WarningLogColor)}>[{contextObject.GetType().GetNameOrFullName()}] </color>{message}");
+            #endif
         }
         
         #if UNITY_2022_3_OR_NEWER
@@ -70,7 +76,9 @@ namespace Framework
         #endif
         public static void LogWarning(object message)
         {
+            #if UNITY_EDITOR
             Debug.Log($"<color=#{Prefs.GetColorString(Prefs.Key.WarningLogColor)}>[No Context] </color>{message}");
+            #endif
         }
         
         #if UNITY_2022_3_OR_NEWER
@@ -78,7 +86,9 @@ namespace Framework
         #endif
         public static void LogImportant<T>(this T contextObject, object message)
         {
+            #if UNITY_EDITOR
             Debug.Log($"<color=#{Prefs.GetColorString(Prefs.Key.ImportantLogColor)}>[{contextObject.GetType().GetNameOrFullName()}] </color>{message}");
+            #endif
         }
         
         #if UNITY_2022_3_OR_NEWER
@@ -86,7 +96,9 @@ namespace Framework
         #endif
         public static void LogImportant(object message)
         {
+            #if UNITY_EDITOR
             Debug.Log($"<color=#{Prefs.GetColorString(Prefs.Key.ImportantLogColor)}>[No Context] </color>{message}");
+            #endif
         }
         
         #if UNITY_2022_3_OR_NEWER
@@ -94,7 +106,9 @@ namespace Framework
         #endif
         public static void LogError<T>(this T contextObject, object message)
         {
+            #if UNITY_EDITOR
             Debug.LogError($"<color=#{Prefs.GetColorString(Prefs.Key.ErrorLogColor)}>[{contextObject.GetType().GetNameOrFullName()}] </color>{message}");
+            #endif
         }
         
         #if UNITY_2022_3_OR_NEWER
@@ -102,7 +116,9 @@ namespace Framework
         #endif
         public static void LogError(object message)
         {
+            #if UNITY_EDITOR
             Debug.LogError($"<color=#{Prefs.GetColorString(Prefs.Key.ErrorLogColor)}>[No Context] </color>{message}");
+            #endif
         }
         
         #endregion
