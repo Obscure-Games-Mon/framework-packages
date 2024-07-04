@@ -41,13 +41,23 @@ namespace Framework
             return type.Name;
         }
 
+        private static void LogContext<T>(T contextObject, object message, string color, bool isError)
+        {
+            var type = contextObject.GetType().GetNameOrFullName();
+            var msg = $"<color=#{color}>[{type}]</color>{message}";
+            var context = contextObject is Object ? (Object)(object)contextObject : null;
+
+            if (isError) Debug.LogError(msg, context);
+            else Debug.Log(msg, context);
+        }
+
         #if UNITY_2022_3_OR_NEWER
         [HideInCallstack]
         #endif
         public static void Log<T>(this T contextObject, object message)
         {
             #if UNITY_EDITOR
-            Debug.Log($"<color=#{Prefs.GetColorString(Prefs.Key.LogColor)}>[{contextObject.GetType().GetNameOrFullName()}] </color>{message}");
+            LogContext(contextObject, message, Prefs.GetColorString(Prefs.Key.LogColor), false);
             #endif
         }
         
@@ -67,7 +77,7 @@ namespace Framework
         public static void LogWarning<T>(this T contextObject, object message)
         {
             #if UNITY_EDITOR
-            Debug.Log($"<color=#{Prefs.GetColorString(Prefs.Key.WarningLogColor)}>[{contextObject.GetType().GetNameOrFullName()}] </color>{message}");
+            LogContext(contextObject, message, Prefs.GetColorString(Prefs.Key.WarningLogColor), false);
             #endif
         }
         
@@ -87,7 +97,7 @@ namespace Framework
         public static void LogImportant<T>(this T contextObject, object message)
         {
             #if UNITY_EDITOR
-            Debug.Log($"<color=#{Prefs.GetColorString(Prefs.Key.ImportantLogColor)}>[{contextObject.GetType().GetNameOrFullName()}] </color>{message}");
+            LogContext(contextObject, message, Prefs.GetColorString(Prefs.Key.ImportantLogColor), false);
             #endif
         }
         
@@ -107,7 +117,7 @@ namespace Framework
         public static void LogError<T>(this T contextObject, object message)
         {
             #if UNITY_EDITOR
-            Debug.LogError($"<color=#{Prefs.GetColorString(Prefs.Key.ErrorLogColor)}>[{contextObject.GetType().GetNameOrFullName()}] </color>{message}");
+            LogContext(contextObject, message, Prefs.GetColorString(Prefs.Key.ErrorLogColor), true);
             #endif
         }
         
