@@ -33,10 +33,11 @@ namespace Framework
                     string outsideContent = BuildEnum("MyEnumName", new[] { "Test1", "Test2" });
                     outsideContent += "\n\n";
                     outsideContent += BuildEnum("MyEnumName2", new[] { "Test1", "Test2" });
-                    Generate(typeof(Framework.Core).ToString(), "MyClassName", Exposure.Public, Modifier.None, 
+                    Generate(typeof(Core).ToString(), "MyClassName", Exposure.Public, Modifier.None, 
                         content, outsideContent, "");
                 }
                 
+                // ReSharper disable once MemberCanBePrivate.Global
                 public static void Generate(string desiredNamespace, string className, Exposure classExposure, Modifier classType, string content, string outsideContent, string path)
                 {
                     string exposure = classExposure switch
@@ -96,6 +97,7 @@ namespace Framework
                     }
                 }
 
+                // ReSharper disable once MemberCanBePrivate.Global
                 public static string BuildEnum(string enumName, string[] enumContents)
                 {
                     enumContents = enumContents.Distinct().ToArray();

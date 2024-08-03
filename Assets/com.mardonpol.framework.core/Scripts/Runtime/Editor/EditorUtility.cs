@@ -7,7 +7,6 @@ using UnityEditor;
 using UnityEditor.Compilation;
 using UnityEngine;
 using Assembly = System.Reflection.Assembly;
-using Object = UnityEngine.Object;
 
 namespace Framework
 {
@@ -58,8 +57,9 @@ namespace Framework
             /// Gets the path of a given class type
             /// </summary>
             /// <param name="classTypeOf">Use typeof() to grab class type.</param>
+            /// <param name="path">Path of the script.</param>
             /// <returns></returns>
-            public static bool GetScriptPath(System.Type classTypeOf, out string path)
+            public static bool GetScriptPath(Type classTypeOf, out string path)
             {
                 return DoGetScriptPath(classTypeOf, out path);
             }
@@ -72,7 +72,7 @@ namespace Framework
                 return DoGetScriptPath(typeof(T), out path);
             }
 
-            private static bool DoGetScriptPath(System.Type scriptTypeOf, out string path)
+            private static bool DoGetScriptPath(Type scriptTypeOf, out string path)
             {
                 path = string.Empty;
 
@@ -101,8 +101,7 @@ namespace Framework
                     string assetPath = AssetDatabase.GUIDToAssetPath(guid);
                     string txt = File.ReadAllText(assetPath);
                     
-                    var splits = scriptTypeOf.FullName.Split('+', '.');
-                    string tmp = string.Empty;
+                    var splits = scriptTypeOf.FullName!.Split('+', '.');
                     int totalSuccess = splits.Length;
                     int success = 0;
                     
@@ -133,7 +132,7 @@ namespace Framework
 
                 bool MatchPattern(string input, string pattern)
                 {
-                    Match matchNamespace = Regex.Match(input, pattern);
+                    var matchNamespace = Regex.Match(input, pattern);
                     return matchNamespace.Success;
                 }
             }

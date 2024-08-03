@@ -25,10 +25,6 @@ namespace Framework
 
         private static PrefabRegistry _prefabRegistry;
         
-        #region Logs
-        
-        #endregion
-        
         /// <summary>
         /// Safely retrieves an element from an array of objects.
         /// </summary>
@@ -75,9 +71,9 @@ namespace Framework
             return defaultValue;
         }
         
-        public static class Prefs
+        public abstract class Prefs
         {
-            private static readonly Dictionary<string, string> Keys = new Dictionary<string, string>()
+            private static readonly Dictionary<string, string> Keys = new()
             {
                 {Key.LogColor, "627bc4"},
                 {Key.ImportantLogColor, "b988d1"},
@@ -85,7 +81,7 @@ namespace Framework
                 {Key.ErrorLogColor, "d9766f"}
             };
             
-            public class Key
+            public abstract class Key
             {
                 public const string LogColor = "LogColor";
                 public const string ImportantLogColor = "ImportantLogColor";
@@ -124,6 +120,7 @@ namespace Framework
 
             public static Color GetColor(string key)
             {
+                // ReSharper disable once RedundantAssignment
                 var colorString = Keys[key];
                 
                 #if UNITY_EDITOR
