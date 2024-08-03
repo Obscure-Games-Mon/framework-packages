@@ -1,13 +1,13 @@
 {
   "name": "com.mardonpol.framework.core",
-  "version": "0.0.23",
+  "version": "0.0.24",
   "displayName": "Framework Core",
   "description": "Core containing extensions and code utility.",
   "unity": "2019.1",
   "unityRelease": "0b5",
-  "documentationUrl": "https://example.com/",
-  "changelogUrl": "https://example.com/changelog.html",
-  "licensesUrl": "https://example.com/licensing.html",
+  "documentationUrl": "",
+  "changelogUrl": "",
+  "licensesUrl": "",
   "keywords": [
     "keyword1",
     "keyword2",
