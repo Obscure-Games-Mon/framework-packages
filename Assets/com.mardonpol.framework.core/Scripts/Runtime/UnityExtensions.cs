@@ -1,4 +1,6 @@
+using System;
 using System.Collections.Generic;
+using System.Text.RegularExpressions;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 
@@ -78,6 +80,11 @@ namespace Framework
             }
             
             return keyObject.GetComponent<T>();
+        }
+
+        public static string GetReadableValue(this Enum source)
+        {
+            return Regex.Replace(source.ToString(), "(?<!^)([A-Z])", " $1");
         }
     }
 }
